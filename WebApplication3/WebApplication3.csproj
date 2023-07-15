@@ -10,4 +10,10 @@
     <Folder Include="Properties\Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\css\bootstrap.min.css" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\jquery-3.7.0.min.js" />
+  </ItemGroup>
+
 </Project>
