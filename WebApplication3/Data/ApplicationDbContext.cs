@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebApplication3.Properties.Models;
+using WebApplication3.Models;
 
 namespace WebApplication3.Data
 {
@@ -10,7 +10,7 @@ namespace WebApplication3.Data
 
         }
         public DbSet<User> Users { get; set; }
-
+        public DbSet<UserRole> UserRoles { get; set; }
 
     }
 }

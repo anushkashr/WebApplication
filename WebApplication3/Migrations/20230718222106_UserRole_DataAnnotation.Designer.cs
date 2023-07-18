@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication3.Data;
 
@@ -10,9 +11,11 @@ using WebApplication3.Data;
 namespace WebApplication3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230718222106_UserRole_DataAnnotation")]
+    partial class UserRole_DataAnnotation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,7 +64,7 @@ namespace WebApplication3.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleID"));
 
                     b.Property<string>("RoleDesc")
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("navarchar(100)");
 
                     b.Property<string>("RoleName")
                         .IsRequired()

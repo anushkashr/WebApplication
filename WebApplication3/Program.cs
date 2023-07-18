@@ -1,3 +1,5 @@
+global using System.ComponentModel.DataAnnotations; //putting this here as hit is repeated in both User.cs and UserRole.cs 
+
 using Microsoft.EntityFrameworkCore;
 using WebApplication3.Data;
 
