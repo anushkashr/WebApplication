@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+  
+
+</head>
+<body>
+   
+
+        <div class="row first_col">Footer</div>
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Employee Management</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="UserRole/Index">Manage Roles</a></li>
+                <li>
+                    <a href="#" asp-controller="User" asp-action="Index">User</a>
+                    </li>
+               
+                <li><a href="#">User</a></li>   
+             
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+            @RenderBody()
+    </div>
+
+
+    
+    
+</body>
+<script src="~/js/jquery-3.7.0.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+</html>
