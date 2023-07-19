@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApplication3.Data;
+using WebApplication3.Models;
 
 namespace WebApplication3.Controllers
 {
@@ -7,6 +8,7 @@ namespace WebApplication3.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        //constructor
         public UserRoleController(ApplicationDbContext context)
         {
             _context = context;
@@ -14,7 +16,9 @@ namespace WebApplication3.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<UserRole> userRoles=_context.UserRoles;
+
+            return View(userRoles);
         }
     }
 }
