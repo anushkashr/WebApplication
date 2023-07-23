@@ -1,14 +1,24 @@
-﻿@model IEnumerable<WebApplication3.Models.UserRole>
+﻿@model IEnumerable<UserRole>
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <div class="container">
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <table class="table">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Manager User Roles</h2>
+        </div>
+
+        <div class="col-md-6">
+            <a asp-controller="UserRole" asp-action="Create" class="btn btn-primary pull-right">Create New</a>
+        </div>
+
+</div>
+
+<hr />
+    
+    <table class="table table-bordered table-responsive table-hover">
         <thead>
             <tr>
                 <th>
@@ -20,7 +30,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.RoleDesc)
                 </th>
-                <th></th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>

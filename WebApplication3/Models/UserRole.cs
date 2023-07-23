@@ -1,5 +1,6 @@
 ﻿//using System.ComponentModel.DataAnnotations; kept in Program.cs as a global declaration 
 
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication3.Models
@@ -13,9 +14,11 @@ namespace WebApplication3.Models
         [Required]
         [Column(TypeName = "varchar(50)")]
 
+        [DisplayName("Role Name")]
         public string RoleName { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]
+        [DisplayName("Role Description")]
         public string RoleDesc { get; set; }
 
 
