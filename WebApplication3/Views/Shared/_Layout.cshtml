@@ -12,7 +12,7 @@
 <body>
    
 
-        <div class="row first_col">Footer</div>
+@*        <div class="row first_col">Footer</div>*@
     
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -20,14 +20,21 @@
                 <a class="navbar-brand" href="#">Employee Management App</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li>
-                    <a asp-controller="UserRole" asp-action="Index">Manage Roles</a>
-                    @*<a href="UserRole/Index">Manage Roles</a>*@
+                <li class="active">
+                    <a asp-controller="Home" asp-action="Index">Home</a>
                 </li>
                 <li>
-                    <a asp-controller="User" asp-action="Index">User</a>
-                    </li> 
+                    <a asp-controller="UserRole" asp-action="Index">User Roles</a>
+                </li>
+                <li>
+                    <a asp-controller="UserRole" asp-action="RoleDetails">Role Details</a>
+  
+                </li>
+                <li>
+                    <a asp-controller="UserRoleWithTagHelper" asp-action="Index">User Role with TagHelper</a>
+
+                </li>
+                
              
             </ul>
         </div>
@@ -35,8 +42,15 @@
 
     <div class="container">
         <div style="margin-top:10%"></div>
-            @RenderBody()
+        @RenderBody()
     </div>
+   
+    <!---Footer--->
+    <footer class="text-center">
+        <div style="margin-top:5%"></div>
+        Copyright @DateTime.Now.Year
+    </footer>
+    
 
 
     

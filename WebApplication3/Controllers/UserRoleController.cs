@@ -14,6 +14,8 @@ namespace WebApplication3.Controllers
             _context = context;
         }
 
+
+
         public IActionResult Index()
         {
             //IEnumerable<UserRole> userRoles=_context.UserRoles;
@@ -39,6 +41,11 @@ namespace WebApplication3.Controllers
                 return RedirectToAction("Index");
             }
             return View(role);
+        }
+
+        public IActionResult RoleDetails(int userRoleId)
+        {
+            return View();
         }
     }
 }
