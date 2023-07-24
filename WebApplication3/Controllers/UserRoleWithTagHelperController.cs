@@ -77,5 +77,23 @@ namespace WebApplication3.Controllers
             return View(model);
 
         }
+
+    
+
+        public IActionResult DeleteRole(int? id)
+        {
+            if(id==null)
+            {
+                return NotFound();
+            }
+
+            var currentRole=_context.UserRoles.Where(x=> x.RoleID == id).FirstOrDefault();
+            if(currentRole != null)
+            {
+                _context.UserRoles.Remove(currentRole);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
