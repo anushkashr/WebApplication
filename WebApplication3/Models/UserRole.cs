@@ -13,8 +13,8 @@ namespace WebApplication3.Models
 
         [Required]
         [Column(TypeName = "varchar(50)")]
-
         [DisplayName("Role Name")]
+        [StringLength(10, MinimumLength =3, ErrorMessage = "Minimum 3 characters required")]
         public string RoleName { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]

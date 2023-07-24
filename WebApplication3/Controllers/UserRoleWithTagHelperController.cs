@@ -18,23 +18,64 @@ namespace WebApplication3.Controllers
             IEnumerable<UserRole> roles=_context.UserRoles.ToList();
             return View(roles);
         }
-        public IActionResult CreateRole()
-        {
+        [HttpGet]
+        public IActionResult CreateRole() 
+        { 
             return View();
         }
 
-        public IActionResult SaveRole(UserRole model)
-        {
-            _context.UserRoles.Add(model);
-            _context.SaveChanges();
 
-            int lastId = model.RoleID;
-            if(lastId>0)
+        [HttpPost]
+        public IActionResult CreateRole(UserRole model)
+        {
+            if(ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                _context.UserRoles.Add(model);
+                _context.SaveChanges();
+
+                int lastId = model.RoleID;
+                if (lastId > 0)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+           
+            return View(model);
+        }
+
+        public IActionResult EditRole(int? roleID)
+        {
+            if(roleID == null)
+            {
+                return NotFound();
             }
 
-            return View("CreateRole");
+            //find user role by id
+            var userRole = _context.UserRoles.Where(role => role.RoleID == roleID).FirstOrDefault();
+
+
+            return View(userRole);
+        }
+        [HttpPost]
+        public IActionResult UpdateRole(UserRole model)
+        {
+            if (ModelState.IsValid)
+            {
+                var currentRole = _context.UserRoles.Find(model.RoleID);    //directly using Update method is bad practice
+
+                if (currentRole != null)
+                {
+                    currentRole.RoleName = model.RoleName;
+                    currentRole.RoleDesc = model.RoleDesc;
+
+                    _context.UserRoles.Update(currentRole);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+            }
+            return View(model);
+
         }
     }
 }

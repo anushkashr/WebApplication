@@ -22,6 +22,7 @@
                 <th>Rolde Id</th>
                 <th>Rolde Name</th>
                 <th>Role Description</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -31,6 +32,12 @@
                             <td>@item.RoleID</td>
                             <td>@item.RoleName</td>
                             <td>@item.RoleDesc</td>
+                            <td>
+                                <a asp-controller="UserRoleWithTagHelper" asp-action="EditRole" asp-route-roleID="@item.RoleID">Edit</a>
+                            </td>
+                        <td>
+                            <a asp-controller="UserRoleWithTagHelper" asp-action="DeleteRole">Delete</a>
+                        </td>
                         </tr>
                         
                     }   
