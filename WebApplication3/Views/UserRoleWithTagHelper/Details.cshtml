@@ -8,16 +8,21 @@
         </div>
         <div class="panel-body" style="margin-left:15px">
             <div class="row">
-                <label>Role ID:</label>
-                <label>@Model.RoleID</label>
+                <label class="control-label">Role ID:</label>
+                <label class="control-label">@Model.RoleID</label>
             </div>
             <div class="row">
-                <label>Role Name:</label>
-                <label>@Model.RoleName</label>
+                <label class="control-label">Role Name:</label>
+                <label class="control-label">@Model.RoleName</label>
             </div>
             <div class="row">
-                <label>Role Description:</label>
-                <label>@Model.RoleDesc</label>
+                <label class="control-label">Role Description:</label>
+                <label class="control-label">@Model.RoleDesc</label>
+            </div>
+            <hr />
+            <div class="row">
+                <a asp-action="EditRole" asp-route-roleID="@Model.RoleID" class="btn btn-success">Edit</a>
+                <a asp-action="Index" class="btn btn-default">Back To List</a>
             </div>
         </div>
     </div>
