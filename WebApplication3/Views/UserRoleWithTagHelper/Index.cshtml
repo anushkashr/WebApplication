@@ -33,8 +33,10 @@
                             <td>@item.RoleName</td>
                             <td>@item.RoleDesc</td>
                             <td>
-                                <a asp-controller="UserRoleWithTagHelper" asp-action="EditRole" asp-route-roleID="@item.RoleID">Edit</a>
-                            <a asp-controller="UserRoleWithTagHelper" asp-action="DeleteRole" onclick="return confirm('Are yu sure you want to delete?')" asp-route-id="@item.RoleID">Delete</a>
+                                <a asp-controller="UserRoleWithTagHelper" asp-action="EditRole" asp-route-roleID="@item.RoleID">Edit</a> |
+                                <a asp-controller="UserRoleWithTagHelper" asp-action="Details" asp-route-id="@item.RoleID">View Details</a> |
+                                <a asp-controller="UserRoleWithTagHelper" asp-action="DeleteRole" 
+                                onclick="return confirm('Are yu sure you want to delete?')" asp-route-id="@item.RoleID">Delete</a>
                             </td>                      
                         </tr>
                         
