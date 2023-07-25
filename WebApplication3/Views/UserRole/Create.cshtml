@@ -31,16 +31,22 @@
                 <span asp-validation-for="RoleDesc" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <label asp-for="RoleDesc" class="control-label"></label>
+                <input asp-for="RoleDesc" class="form-control" />
+                <span asp-validation-for="RoleDesc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+                <button class="btn btn-default" a asp-action="Index">Back to List</button></a>
             </div>
         </form>
     </div>
 </div>
 @*</div>*@
 
-<div>
+@*<div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
 
 @*@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
