@@ -28,5 +28,10 @@ namespace WebApplication3.Models
     
         public string Address { get; set; }
 
+        [Column(TypeName ="datetime")]
+        public DateTime Dob { get; set; } 
+
+        public int Age { get; set; }
+
     }
 }

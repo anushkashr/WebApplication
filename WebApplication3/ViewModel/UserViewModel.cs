@@ -1,4 +1,6 @@
-﻿using WebApplication3.Helper;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Drawing;
+using WebApplication3.Helper;
 
 namespace WebApplication3.ViewModel
 {
@@ -41,6 +43,17 @@ namespace WebApplication3.ViewModel
         [Compare("Password", ErrorMessage = "Password and Confirm Password must match")]
         public string ConfirmPassword { get; set; }
 
+
+        [Required]
+        [Display(Name = "User Role")]
+        public int? RoleID { get; set; }
+
+
+        //loop launa milne item to show the User roles in the drop down in Create page 
+        //SelectListItem is a readymade item 
+        public IEnumerable<SelectListItem> UserRoles { get; set; }  
+
+        #region ValidationRegion
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             //we can specify our custom logic here
@@ -60,5 +73,6 @@ namespace WebApplication3.ViewModel
                 yield return new ValidationResult("Age cannot be 20");
             }
         }
+        #endregion
     }
 }
