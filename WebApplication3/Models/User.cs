@@ -33,5 +33,14 @@ namespace WebApplication3.Models
 
         public int Age { get; set; }
 
+        //navigation property
+        //Here we are setting the ForeignKey
+        [ForeignKey("UserRole")]
+        public int RoleID { get; set; }
+
+
+        //navigation property
+        //UserRole ko class lai nai tesko object banaidiyau
+        public UserRole UserRole { get; set; }
     }
 }

@@ -45,9 +45,10 @@ namespace WebApplication3.Controllers
                     Email = model.Email,
                     Password = model.Password,
                     Age = model.Age,
+                    RoleID = Convert.ToInt32(model.RoleID),
                     Dob = Convert.ToDateTime(model.Dob),
-
                 };
+
                 _context.Users.Add(_user);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
