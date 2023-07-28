@@ -13,16 +13,39 @@
     </div>
     <hr style="border:1px solid" />
 
-@*    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label" col-md-4">Email</label>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" />
+    <form>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label col-md-2" name="email" style="padding-top:5px">Email</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="padding-top:5px">Role</label>
+                    <div class="col-md-8">
+                        <select class="form-control" name="roleId">
+                            <option>Select</option>
+                            <option value="1">Checker</option>
+                            <option value="3">Admin</option>
+                            <option value="4">Maker</option>
+                            <option value="5">Normal User</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group pull-left">
+                    <input type="submit" class="btn btn-info" value="Search" />
                 </div>
             </div>
         </div>
-    </div>*@
+    </form>
+ 
+ 
 
     <div class="row">
         <table class="table table-bordered table-striped">
@@ -39,12 +62,14 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <td>@item.UserID</td>
-                    <td>@item.FirstName</td>
-                    <td>@item.LastName</td>
-                    <td>@item.Email</td>
-                    <td>@item.RoleID</td>
-                    <td>@item.UserRole.RoleName</td>
+                    <tr>
+                        <td>@item.UserID</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.Email</td>
+                        <td>@item.RoleID</td>
+                        <td>@item.UserRole.RoleName</td>
+                    </tr>
                 }
             </tbody>
         </table>

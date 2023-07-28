@@ -15,14 +15,17 @@ namespace WebApplication3.Controllers
         {
                _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(string? email, int? roleId)
         {
-            var _users = _context.Users.ToList();
+
+            //not used right now 
+            //var _users = _context.Users.ToList();
 
             //Joining User and UseRole table to get the Role name
             var userWithRole = from u in _context.Users
                                join r in _context.UserRoles 
                                on u.RoleID equals r.RoleID
+                               //where u.Email == email && u.RoleID == roleId //for filter
                                select new UserViewModel()
                                {
                                    UserID = u.UserID,
@@ -38,6 +41,15 @@ namespace WebApplication3.Controllers
                                        RoleDesc = r.RoleDesc,
                                    }
                                };
+            //to check filter
+            if (!string.IsNullOrEmpty(email) && roleId > 0)
+            {
+                userWithRole = userWithRole.Where(x => x.Email == email.Trim());
+            }
+            if (roleId>0)
+            {
+                userWithRole = userWithRole.Where(x => x.RoleID == roleId);
+            }
 
             return View(userWithRole);
         }
