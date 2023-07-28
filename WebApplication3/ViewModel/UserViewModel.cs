@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Drawing;
+using WebApplication3.Models;
 using WebApplication3.Helper;
 
 namespace WebApplication3.ViewModel
@@ -48,6 +49,8 @@ namespace WebApplication3.ViewModel
         [Display(Name = "User Role")]
         public int? RoleID { get; set; }
 
+        //declaring to use in join query
+        public UserRole UserRole { get; set; }
 
         //loop launa milne item to show the User roles in the drop down in Create page 
         //SelectListItem is a readymade item 

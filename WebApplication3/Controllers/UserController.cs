@@ -17,7 +17,29 @@ namespace WebApplication3.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var _users = _context.Users.ToList();
+
+            //Joining User and UseRole table to get the Role name
+            var userWithRole = from u in _context.Users
+                               join r in _context.UserRoles 
+                               on u.RoleID equals r.RoleID
+                               select new UserViewModel()
+                               {
+                                   UserID = u.UserID,
+                                   RoleID = r.RoleID,
+                                   FirstName = u.FirstName,
+                                   LastName = u.LastName,
+                                   Email = u.Email,
+                                   Age = u.Age,
+                                   UserRole = new UserRole()
+                                   {
+                                       RoleID = u.RoleID,
+                                       RoleName=r.RoleName,
+                                       RoleDesc = r.RoleDesc,
+                                   }
+                               };
+
+            return View(userWithRole);
         }
 
         public IActionResult CreateUser()
