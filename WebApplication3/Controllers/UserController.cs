@@ -24,7 +24,6 @@ namespace WebApplication3.Controllers
         {
             UserViewModel model = new UserViewModel();
 
-
             //to bind User Roles in te drop down 
             model.UserRoles = GetUserRoles();
             //here UserRoles is of Enumerable type so we cannot do any CRUD operations, it is readonly
@@ -45,6 +44,8 @@ namespace WebApplication3.Controllers
                     LastName = model.LastName,
                     Email = model.Email,
                     Password = model.Password,
+                    Age = model.Age,
+                    Dob = Convert.ToDateTime(model.Dob),
 
                 };
                 _context.Users.Add(_user);
