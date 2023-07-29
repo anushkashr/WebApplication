@@ -13,9 +13,9 @@
 
         public int Age { get; set; }
 
-        public string RoleID { get; set; }
+        public int RoleID { get; set; }
 
-        public int RoleName { get; set; }
+        public string RoleName { get; set; }
 
 
     }

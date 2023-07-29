@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using WebApplication3.Data;
 using WebApplication3.Models;
@@ -20,9 +21,16 @@ namespace WebApplication3.Controllers
         {
             //var users = _context.Users.FromSqlRaw("Select *from users");
 
-            var users = _context.UserWithRole.FromSqlRaw("sp_GetUserWithRole {0}, {1}", email, roleId);
+            //var users = _context.UserWithRole.FromSqlRaw("sp_GetUserWithRole {0}, {1}", email, roleId);
 
-            IQueryable<UserViewModel> userWithRole = FetchDataWithLinq(email, roleId);
+            //IQueryable<UserViewModel> userWithRole = FetchDataWithLinq(email, roleId);
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@RoleID", roleId.HasValue?(object)roleId.Value:DBNull.Value), 
+                new SqlParameter("@Email", email??(object)DBNull.Value)
+            };
+            var users = _context.UserWithRole.FromSqlRaw("EXEC sp_GetUserWithRole @RoleID, @Email", parameters);
 
             return View(users);
         }
