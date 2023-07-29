@@ -17,13 +17,12 @@ namespace WebApplication3.Controllers
         }
         public IActionResult Index(string? email, int? roleId)
         {
-
             //not used right now 
             //var _users = _context.Users.ToList();
 
             //Joining User and UseRole table to get the Role name
             var userWithRole = from u in _context.Users
-                               join r in _context.UserRoles 
+                               join r in _context.UserRoles
                                on u.RoleID equals r.RoleID
                                //where u.Email == email && u.RoleID == roleId //for filter
                                select new UserViewModel()
@@ -37,16 +36,16 @@ namespace WebApplication3.Controllers
                                    UserRole = new UserRole()
                                    {
                                        RoleID = u.RoleID,
-                                       RoleName=r.RoleName,
+                                       RoleName = r.RoleName,
                                        RoleDesc = r.RoleDesc,
                                    }
                                };
             //to check filter
-            if (!string.IsNullOrEmpty(email) && roleId > 0)
+            if (!string.IsNullOrEmpty(email))
             {
                 userWithRole = userWithRole.Where(x => x.Email == email.Trim());
             }
-            if (roleId>0)
+            if (roleId > 0)
             {
                 userWithRole = userWithRole.Where(x => x.RoleID == roleId);
             }
