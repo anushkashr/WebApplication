@@ -1,5 +1,5 @@
 ﻿<!-- We're using UserViewModel so passing <UserViewModel> -->
-@model IEnumerable<UserViewModel>
+@model IEnumerable<UserWithRole>
 
 
 <div class="container">
@@ -64,12 +64,13 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.UserID</td>
+                        <td>@item.UserId</td>
                         <td>@item.FirstName</td>
                         <td>@item.LastName</td>
                         <td>@item.Email</td>
                         <td>@item.RoleID</td>
-                        <td>@item.UserRole.RoleName</td>
+                        <td>@item.RoleName</td>  @*with UserWithRole we can directly access RoleName*@
+                        @*<td>@item.UserRole.RoleName</td>*@
                     </tr>
                 }
             </tbody>

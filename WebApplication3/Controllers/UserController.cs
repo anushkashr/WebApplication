@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using WebApplication3.Data;
 using WebApplication3.Models;
 using WebApplication3.ViewModel;
@@ -16,6 +17,17 @@ namespace WebApplication3.Controllers
                _context = context;
         }
         public IActionResult Index(string? email, int? roleId)
+        {
+            //var users = _context.Users.FromSqlRaw("Select *from users");
+
+            var users = _context.UserWithRole.FromSqlRaw("sp_GetUserWithRole {0}, {1}", email, roleId);
+
+            IQueryable<UserViewModel> userWithRole = FetchDataWithLinq(email, roleId);
+
+            return View(users);
+        }
+
+        private IQueryable<UserViewModel> FetchDataWithLinq(string email, int? roleId)
         {
             //not used right now 
             //var _users = _context.Users.ToList();
@@ -50,7 +62,7 @@ namespace WebApplication3.Controllers
                 userWithRole = userWithRole.Where(x => x.RoleID == roleId);
             }
 
-            return View(userWithRole);
+            return userWithRole;
         }
 
         public IActionResult CreateUser()

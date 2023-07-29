@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 using WebApplication3.Models;
 
 namespace WebApplication3.Data
@@ -11,6 +12,9 @@ namespace WebApplication3.Data
         }
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+
+        [NotMapped]
+        public DbSet<UserWithRole> UserWithRole { get; set; }
 
     }
 }
