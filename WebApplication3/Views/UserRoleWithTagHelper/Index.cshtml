@@ -11,9 +11,29 @@
         </div>
     </div>
 
-
-
     <hr style="border:1px solid" />
+
+    @if(ViewBag.Message != null)
+    {
+        <div class="alert alert-success">
+            <strong>ViewBag!</strong> @ViewBag.Message
+        </div>
+    }
+
+    @if (ViewData["Message"] != null)
+    {
+        <div class="alert alert-success">
+            <strong>ViewData!</strong> @ViewData["Message"]
+        </div>
+    }
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">
+            <strong>TempData!</strong> @TempData["Message"]
+        </div>
+    }
+
     <div class="row">
 
     <table class="table table-bordered table-striped">

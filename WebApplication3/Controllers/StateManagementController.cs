@@ -27,7 +27,11 @@ namespace WebApplication3.Controllers
             //used to throw message to view
             //has a key value pair syntax
             //needs typecasting
-            ViewData["UserRole"] = _context.UserRoles;
+            //ViewData["UserRole"] = _context.UserRoles;
+
+            //same syntax as ViewData as well as needs typecasting
+            //one controller to another controller
+            TempData["UserRole"] = _context.UserRoles;
 
             return View();
         }

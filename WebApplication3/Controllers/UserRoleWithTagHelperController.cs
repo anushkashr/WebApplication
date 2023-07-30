@@ -70,6 +70,11 @@ namespace WebApplication3.Controllers
 
                     _context.UserRoles.Update(currentRole);
                     _context.SaveChanges();
+
+                    ViewBag.Message = "Role updated successfully";
+                    ViewData["Message"] = "Role updated successfully";
+                    TempData["Message"] = "Role updated successfully";
+
                     return RedirectToAction("Index");
                 }
 
