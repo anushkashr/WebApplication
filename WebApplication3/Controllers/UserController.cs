@@ -33,7 +33,7 @@ namespace WebApplication3.Controllers
                 viewModel = new UserViewModel();
             }
             viewModel.UserRoles = GetUserRoles();
-            //IQueryable<UserWithRole> users = GetUsers(viewModel);
+            //IQueryable<UserWithRole> users = GetUsers(viewModel); 
             GetUsers(viewModel);
             return View(viewModel);
         }
