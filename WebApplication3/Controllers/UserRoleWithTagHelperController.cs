@@ -15,6 +15,9 @@ namespace WebApplication3.Controllers
 
         public IActionResult Index()
         {
+            //ViewBag.Message = "Hello from Index View using ViewBag";
+            //ViewData["Message"] = "Hello from Index View using ViewData";
+
             IEnumerable<UserRole> roles=_context.UserRoles.ToList();
             return View(roles);
         }
