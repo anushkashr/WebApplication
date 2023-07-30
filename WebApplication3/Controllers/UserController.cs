@@ -19,7 +19,7 @@ namespace WebApplication3.Controllers
         }
 
         //[HttpPost] esle garda page wasn't loading
-        public IActionResult Index(UserViewModel viewModel)
+        public IActionResult Index(UserMasterDataVM viewModel)
         {
             //var users = _context.Users.FromSqlRaw("Select *from users");
 
@@ -30,7 +30,7 @@ namespace WebApplication3.Controllers
             //for list to be static
             if (viewModel == null)
             {
-                viewModel = new UserViewModel();
+                viewModel = new UserMasterDataVM();
             }
             viewModel.UserRoles = GetUserRoles();
             //IQueryable<UserWithRole> users = GetUsers(viewModel); 
@@ -38,8 +38,15 @@ namespace WebApplication3.Controllers
             return View(viewModel);
         }
 
-        private IQueryable<UserWithRole> GetUsers(UserViewModel viewModel)
+        private IQueryable<UserWithRole> GetUsers(UserMasterDataVM viewModel)
         {
+            //trim email in filter
+            if(!string.IsNullOrEmpty(viewModel.Email))
+            {
+                viewModel.Email = viewModel.Email.Trim();
+            }
+
+
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@RoleID", viewModel.RoleId.HasValue?(object)viewModel.RoleId.Value:DBNull.Value),

@@ -83,6 +83,21 @@ namespace WebApplication3.ViewModel
 
     }
 
+    //Filter ko lagi, making the filter functionality independent
+    public class UserMasterDataVM
+    {
+        //chahine fields matra halne, in this case email and role 
+
+        public int? RoleId { get; set; }
+        public string Email { get; set; }
+
+        //two extra things we need are: UserRole ko list and Users
+        public IEnumerable<SelectListItem> UserRoles { get; set; }
+
+        public IQueryable<UserWithRole> Users { get; set; }
+
+    }
+
 
 
 }
