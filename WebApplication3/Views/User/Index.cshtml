@@ -1,6 +1,6 @@
 ﻿<!-- We're using UserViewModel so passing <UserViewModel> -->
-@model IEnumerable<UserWithRole>
-
+@*@model IEnumerable<UserWithRole>*@ <!--because we are now making filter static-->
+@model UserViewModel
 
 <div class="container">
     <div class="row">
@@ -28,12 +28,12 @@
                 <div class="form-group">
                     <label class="control-label" style="padding-top:5px">Role</label>
                     <div class="col-md-8">
-                        <select class="form-control" name="roleId">
-                            <option>Select</option>
+                        <select class="form-control" name="roleId" asp-items="Model.UserRoles">
+               @*             <option>Select</option>
                             <option value="1">Checker</option>
                             <option value="3">Admin</option>
                             <option value="4">Maker</option>
-                            <option value="5">Normal User</option>
+                            <option value="5">Normal User</option>*@
                         </select>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.Users) //UserViewModel is entirely one model and in it we are using Users
                 {
                     <tr>
                         <td>@item.UserId</td>

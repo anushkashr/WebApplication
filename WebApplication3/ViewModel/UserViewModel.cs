@@ -47,7 +47,7 @@ namespace WebApplication3.ViewModel
 
         [Required]
         [Display(Name = "User Role")]
-        public int? RoleID { get; set; }
+        public int? RoleId { get; set; }
 
         //declaring to use in join query
         public UserRole UserRole { get; set; }
@@ -55,6 +55,8 @@ namespace WebApplication3.ViewModel
         //loop launa milne item to show the User roles in the drop down in Create page 
         //SelectListItem is a readymade item 
         public IEnumerable<SelectListItem> UserRoles { get; set; }  
+
+        public IQueryable<UserWithRole> Users { get; set; }
 
         #region ValidationRegion
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)

@@ -17,7 +17,9 @@ namespace WebApplication3.Controllers
         {
                _context = context;
         }
-        public IActionResult Index(string? email, int? roleId)
+
+        //[HttpPost] esle garda page wasn't loading
+        public IActionResult Index(UserViewModel viewModel)
         {
             //var users = _context.Users.FromSqlRaw("Select *from users");
 
@@ -25,14 +27,28 @@ namespace WebApplication3.Controllers
 
             //IQueryable<UserViewModel> userWithRole = FetchDataWithLinq(email, roleId);
 
+            //for list to be static
+            if (viewModel == null)
+            {
+                viewModel = new UserViewModel();
+            }
+            viewModel.UserRoles = GetUserRoles();
+            //IQueryable<UserWithRole> users = GetUsers(viewModel);
+            GetUsers(viewModel);
+            return View(viewModel);
+        }
+
+        private IQueryable<UserWithRole> GetUsers(UserViewModel viewModel)
+        {
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@RoleID", roleId.HasValue?(object)roleId.Value:DBNull.Value), 
-                new SqlParameter("@Email", email??(object)DBNull.Value)
+                new SqlParameter("@RoleID", viewModel.RoleId.HasValue?(object)viewModel.RoleId.Value:DBNull.Value),
+                new SqlParameter("@Email", viewModel.Email??(object)DBNull.Value)
             };
-            var users = _context.UserWithRole.FromSqlRaw("EXEC sp_GetUserWithRole @RoleID, @Email", parameters);
+            var users = _context.UserWithRole.FromSqlRaw("EXEC sp3_GetUserWithRole @RoleID, @Email", parameters);
 
-            return View(users);
+            viewModel.Users = users;
+            return users;
         }
 
         private IQueryable<UserViewModel> FetchDataWithLinq(string email, int? roleId)
@@ -48,7 +64,7 @@ namespace WebApplication3.Controllers
                                select new UserViewModel()
                                {
                                    UserID = u.UserID,
-                                   RoleID = r.RoleID,
+                                   RoleId = r.RoleID,
                                    FirstName = u.FirstName,
                                    LastName = u.LastName,
                                    Email = u.Email,
@@ -67,7 +83,7 @@ namespace WebApplication3.Controllers
             }
             if (roleId > 0)
             {
-                userWithRole = userWithRole.Where(x => x.RoleID == roleId);
+                userWithRole = userWithRole.Where(x => x.RoleId == roleId);
             }
 
             return userWithRole;
@@ -98,7 +114,7 @@ namespace WebApplication3.Controllers
                     Email = model.Email,
                     Password = model.Password,
                     Age = model.Age,
-                    RoleID = Convert.ToInt32(model.RoleID),
+                    RoleID = Convert.ToInt32(model.RoleId),
                     Dob = Convert.ToDateTime(model.Dob),
                 };
 
