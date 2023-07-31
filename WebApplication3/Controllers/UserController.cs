@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using WebApplication3.Data;
+using WebApplication3.Filters;
 using WebApplication3.Models;
 using WebApplication3.ViewModel;
 
 
 namespace WebApplication3.Controllers
 {
+    [AuthenticationFilter]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _context;

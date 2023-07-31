@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApplication3.Data;
+using WebApplication3.Filters;
 using WebApplication3.Models;
 
 namespace WebApplication3.Controllers
 {
+    [AuthenticationFilter]
     public class UserRoleWithTagHelperController : Controller
     {
 

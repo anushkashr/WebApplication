@@ -1,18 +1,17 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor _accessor
+
+
+
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
-
-  
-
 </head>
 <body>
-   
-
-@*        <div class="row first_col">Footer</div>*@
     
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -37,8 +36,20 @@
                     <a asp-controller="UserRoleWithTagHelper" asp-action="Index">User Role with TagHelper</a>
 
                 </li>
-                
-             
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                @*show session if there is one *@
+                <li>
+                   <a asp-controller="Home">
+                      @* Putting Welcome! AccountController ko username*@
+                       Welcome! @_accessor.HttpContext.Session.GetString("UserName")
+                   </a>
+                </li>
+                <li>
+                    <a asp-controller="Account" asp-action="LogOff">
+                       LogOff
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -53,11 +64,7 @@
         <div style="margin-top:1%"></div>
         Copyright @DateTime.Now.Year
     </footer>
-    
-
-
-    
-    
+ 
 </body>
 <script src="~/js/jquery-3.7.0.min.js"></script>
 <script src="~/js/bootstrap.min.js"></script>

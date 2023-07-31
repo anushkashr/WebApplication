@@ -4,6 +4,7 @@ using WebApplication3.Data;
 
 namespace WebApplication3.Controllers
 {
+
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -17,13 +18,16 @@ namespace WebApplication3.Controllers
                 _httpContextAccessor = httpContextAccessor;
         }
 
-        public IActionResult Login()
+        //Parameter is QueryString ma pass gareko ko error message
+        public IActionResult Login(string errorMessage)
         {
+            //throwing the error message using ViewBag
+            ViewBag.Message = errorMessage;
             return View();
         }
 
         [HttpPost]
-        public IActionResult Login(string email, string password)
+        public IActionResult Login(string email, string password, string returnURL)
         {
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
@@ -43,6 +47,11 @@ namespace WebApplication3.Controllers
             //if valid Set session
             _httpContextAccessor.HttpContext.Session.SetInt32("UserId", user.UserID);
             _httpContextAccessor.HttpContext.Session.SetString("UserName", fullName);
+
+            if(!string.IsNullOrEmpty(returnURL))
+            {
+                return Redirect(returnURL);   
+            }
 
             //we'll pass this to HomeController's Index
             return RedirectToAction("Index", "Home");
