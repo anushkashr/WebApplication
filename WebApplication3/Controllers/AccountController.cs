@@ -56,6 +56,17 @@ namespace WebApplication3.Controllers
             //we'll pass this to HomeController's Index
             return RedirectToAction("Index", "Home");
         }
+
+        //LOGOFF
+        public IActionResult LogOff()
+        {
+            //close all open sessions
+            _httpContextAccessor.HttpContext.Session.Remove("UserId");
+            _httpContextAccessor.HttpContext.Session.Remove("UserName");
+            _httpContextAccessor.HttpContext.Session.Clear();
+
+            return RedirectToAction("Login");
+        }
     }
 
 }
