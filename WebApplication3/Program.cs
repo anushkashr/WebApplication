@@ -21,7 +21,7 @@ var app = builder.Build();
 app.UseStaticFiles(); //used for all the functionalities present in wwwroot folder
 app.UseSession(); //for sessions
 app.UseRouting();
-app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(name: "default", pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();
 
