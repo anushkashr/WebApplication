@@ -1,0 +1,7 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor _accessor
+
+
+<div class="container">
+    <h1>Counter Value is: @_accessor.HttpContext.Session.GetInt32("CounterKey")</h1>
+</div>
